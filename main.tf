@@ -96,6 +96,13 @@ resource "aws_security_group" "allow_web" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+    ingress {
+    description = "Jenkins HTTP"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   ingress {
     description = "SSH"
     from_port   = 22
@@ -143,7 +150,7 @@ output "server_public_ip" {
 # 9. Create Ubuntu server and install/enable apache2
 
 resource "aws_instance" "web-server-instance" {
-  ami               = "ami-03657b56516ab7912"
+  ami               = "ami-04fcd96153cb57194"
   instance_type     = "t2.micro"
   availability_zone = "us-east-2a"
   key_name          = "liran_key_pair"
@@ -156,9 +163,17 @@ resource "aws_instance" "web-server-instance" {
   user_data = <<-EOF
                 #!/bin/bash
                 sudo yum update -y
-                sudo yum install httpd -y
-                sudo systemctl start httpd
-                sudo bash -c 'echo Hello World > /var/www/html/index.html'
+                sudo yum install git -y
+                sudo amazon-linux-extras install docker
+                sudo yum install docker
+                sudo service docker start
+                sudo usermod -a -G docker ec2-user
+                sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+                sudo chmod +x /usr/local/bin/docker-compose
+                git clone https://github.com/liranfar/Terraform-Skeleton.git
+                cd Terraform-Skeleton
+                sudo chmod +x run_services.sh
+                ./run_services.sh
                 EOF
   tags = {
     Name = "web-server"
