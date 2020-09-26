@@ -76,4 +76,4 @@ maven-plugin
 config-file-provider
 ansible
 jacoco
-
+terraform

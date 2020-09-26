@@ -172,7 +172,6 @@ resource "aws_instance" "web-server-instance" {
                 git clone https://github.com/liranfar/Terraform-Skeleton.git /home/ec2-user/Terraform-Skeleton
                 cd /home/ec2-user/Terraform-Skeleton
                 sudo chmod +x run_services.sh
-                #su - ec2-user -c "./run_services.sh"
                 sudo ./run_services.sh
                 EOF
   tags = {
@@ -190,6 +189,9 @@ output "server_private_ip" {
 output "server_id" {
   value = aws_instance.web-server-instance.id
 }
+
+
+
 
 
 # resource "<provider>_<resource_type>" "name" {
