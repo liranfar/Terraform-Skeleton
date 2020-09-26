@@ -158,7 +158,7 @@ resource "aws_instance" "web-server-instance" {
                 sudo yum update -y
                 sudo yum install httpd -y
                 sudo systemctl start httpd
-                sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                sudo bash -c 'echo Hello World > /var/www/html/index.html'
                 EOF
   tags = {
     Name = "web-server"
