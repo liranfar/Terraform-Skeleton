@@ -77,3 +77,4 @@ config-file-provider
 ansible
 jacoco
 terraform
+docker
