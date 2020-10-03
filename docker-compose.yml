@@ -15,6 +15,7 @@ services:
      - "./jenkins/jobs:/var/jenkins_home/jobs/"
      - "./jenkins/m2deps:/var/jenkins_home/.m2/repository/"
      - "./jenkins/downloads:/var/jenkins_home/downloads"
+     - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
      - NEXUS_RELEASES_URL=http://nexus:8081/repository/maven-releases/
      - NEXUS_SNAPSHOTS_URL=http://nexus:8081/repository/maven-snapshots/

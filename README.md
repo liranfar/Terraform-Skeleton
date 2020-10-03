@@ -31,7 +31,7 @@ Hello World
 * [Jenkins & Terraform Integration](https://www.youtube.com/watch?v=5jwYGCAr_pw)
 
 ## TODOs
-1. create new github repo which contains only spring boot app with maven ( take it from jenkinsFile-helloWorld repo)
+[X] create new github repo which contains only spring boot app with maven ( take it from jenkinsFile-helloWorld repo)
 1. Create in that repo, jenkinsFile and teraform file for the deployment from jenkins
 1. Divide the job to 2 main phases:
     - build, test ,create docker image and push to docker-registry/nexus
